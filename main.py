@@ -14,6 +14,10 @@ ENTRY = (
 
 
 def main() -> None:
+    if not (1 <= len(ENTRY) <= 200):
+        raise SystemExit(f"entry must be 1-200 chars, got {len(ENTRY)}")
+    if "\n" in ENTRY or ENTRY != ENTRY.strip():
+        raise SystemExit("entry must be a single non-blank line")
     out_dir = os.environ.get("OUTPUT_DIR", "/output")
     os.makedirs(out_dir, exist_ok=True)
     path = os.path.join(out_dir, "entry.txt")
